@@ -6,7 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "pretty-quick --staged",
+    "prepare": "husky install"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged --verbose"
+    }
   },
   "dependencies": {
     "@next/font": "13.1.4",
@@ -26,8 +33,10 @@
     "autoprefixer": "^10.4.13",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.0",
     "mdx": "^0.3.1",
     "next-mdx-remote": "^4.3.0",
-    "prettier": "^2.8.3"
+    "prettier": "^2.8.3",
+    "pretty-quick": "^3.1.3"
   }
 }

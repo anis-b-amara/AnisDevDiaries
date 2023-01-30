@@ -6,4 +6,4 @@ module.exports = {
     enabled: process.env.NODE_EN === 'production',
     content: ['src/components/**/*.tsx', 'src/pages/**/*.tsx'],
   },
-}
+};
