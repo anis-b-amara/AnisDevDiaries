@@ -3,7 +3,7 @@ import * as React from 'react';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import fs from 'fs';
-import { BLOGS_PATH } from '@/blogs/utils';
+import { BLOGS_PATH } from '../utils';
 
 type HomeProps = {
   files: string[];
@@ -19,9 +19,9 @@ export default function Home(props: HomeProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="bg-lime-50 w-56 h-32 mx-auto mt-5 p-4">
+      <main className="w-56 h-32 p-4 mx-auto mt-5 bg-lime-50">
         <h1 className="font-bold text-center">Hello Blog</h1>
-        <section className="bg-black p-2">
+        <section className="p-2 bg-black">
           {files.map((file) => (
             <div key={file} className="text-white">
               {file}

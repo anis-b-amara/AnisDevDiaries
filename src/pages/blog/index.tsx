@@ -1,12 +1,12 @@
-import fs from 'fs';
-import path from 'path';
 import Link from 'next/link';
-
-import { BLOGS_PATH } from '../../blogs/utils';
+import path from 'path';
+import fs from 'fs';
+import { BLOGS_PATH } from '../../utils';
+import matter from 'gray-matter';
 
 interface Blog {
   title: string;
-  fileName: string;
+  slug: string;
 }
 
 interface BlogProps {
@@ -17,8 +17,8 @@ const Blogs = ({ blogs }: BlogProps) => {
   return (
     <ul>
       {blogs.map((blog) => (
-        <li key={blog.fileName}>
-          <Link href={`/blog/${blog.fileName}`}>{blog.title}</Link>
+        <li key={blog.slug}>
+          <Link href={`/blog/${blog.slug}`}>{blog.title}</Link>
         </li>
       ))}
     </ul>
@@ -30,14 +30,14 @@ export const getStaticProps = async () => {
 
   const blogs: Blog[] = files.map((file) => {
     const filePath = path.join(BLOGS_PATH, file);
-    const content = fs.readFileSync(filePath, 'utf-8');
-
-    const lines = content.split('\n');
-    const title = lines.find((line) => line.startsWith('# '))?.substr(2) || '';
+    const mdXContent = fs.readFileSync(filePath, 'utf-8');
+    const { data } = matter(mdXContent);
+    const slug = data.slug;
+    const title = data.title;
 
     return {
       title,
-      fileName: file.replace('.mdx', ''),
+      slug,
     };
   });
 
