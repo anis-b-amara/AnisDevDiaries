@@ -15,14 +15,20 @@ interface BlogPostProps {
 const BlogPost: React.FC<BlogPostProps> = ({ content, data }) => {
   const date = new Date(data.date).toLocaleDateString();
   return (
-    <div className="blog-post">
-      <h1>{data.title}</h1>
-      <div>{data.x}</div>
-      <i>
-        Published <span>{date}</span>
-      </i>
-      <MDXRemote {...content} />
-    </div>
+    <main className="flex flex-col gap-4 w-[960px] mx-auto">
+      <section className="flex flex-col items-center p-4 bg-orange-200">
+        <h1 className="text-3xl font-bold">{data.title}</h1>
+        <div>{data.x}</div>
+        <div>
+          <i className="text-sm">
+            Published <span className="font-medium">{date}</span>
+          </i>
+        </div>
+      </section>
+      <section className="p-4 bg-slate-100">
+        <MDXRemote {...content} />
+      </section>
+    </main>
   );
 };
 

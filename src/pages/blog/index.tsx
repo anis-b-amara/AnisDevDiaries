@@ -15,13 +15,28 @@ interface BlogProps {
 
 const Blogs = ({ blogs }: BlogProps) => {
   return (
-    <ul>
-      {blogs.map((blog) => (
-        <li key={blog.slug}>
-          <Link href={`/blog/${blog.slug}`}>{blog.title}</Link>
-        </li>
-      ))}
-    </ul>
+    <main className="flex flex-col items-center gap-4 p-4">
+      <div className="relative flex items-center justify-center w-full p-4 bg-slate-400">
+        <div className="px-4 py-2 mr-auto text-white bg-black flex-0">
+          <Link href="/" className="flex">
+            Go back to Home Page
+          </Link>
+        </div>
+        <h1 className="absolute flex-grow text-3xl left">The Blog</h1>
+      </div>
+      <ul className="flex flex-col w-full gap-2 p-4 bg-slate-100">
+        {blogs.map((blog) => (
+          <li key={blog.slug}>
+            <Link
+              className="text-xl font-semibold text-blue-600"
+              href={`/blog/${blog.slug}`}
+            >
+              {blog.title}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </main>
   );
 };
 
