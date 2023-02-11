@@ -6,6 +6,7 @@ import fs from 'fs';
 import path from 'path';
 
 import { BLOGS_PATH } from '../../utils';
+import PageContainer from '@/components/PageContainer';
 
 interface BlogPostProps {
   content: MDXRemoteProps;
@@ -15,20 +16,22 @@ interface BlogPostProps {
 const BlogPost: React.FC<BlogPostProps> = ({ content, data }) => {
   const date = new Date(data.date).toLocaleDateString();
   return (
-    <main className="flex flex-col gap-4 w-[960px] mx-auto">
-      <section className="flex flex-col items-center p-4 bg-orange-200">
-        <h1 className="text-3xl font-bold">{data.title}</h1>
-        <div>{data.x}</div>
-        <div>
-          <i className="text-sm">
-            Published <span className="font-medium">{date}</span>
-          </i>
-        </div>
-      </section>
-      <section className="p-4 bg-slate-100">
-        <MDXRemote {...content} />
-      </section>
-    </main>
+    <PageContainer>
+      <div className="flex flex-col gap-5">
+        <section className="flex flex-col items-center p-4 bg-secondary">
+          <h2 className="text-3xl font-bold">{data.title}</h2>
+          <div>{data.x}</div>
+          <div>
+            <i className="text-sm">
+              Published <span className="font-medium">{date}</span>
+            </i>
+          </div>
+        </section>
+        <section className="p-4 bg-slate-100">
+          <MDXRemote {...content} />
+        </section>
+      </div>
+    </PageContainer>
   );
 };
 

@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import Link from 'next/link';
 import Head from 'next/head';
+import PageContainer from '@/components/PageContainer';
 
 export default function Home() {
   return (
@@ -12,16 +13,17 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="h-32 p-4 mx-auto mt-5 bg-slate-50">
-        <h1 className="text-3xl font-bold text-center">Anis Dev Diaries</h1>
-        <main className="p-2">
-          <p>Hello To my personal website, this is still a draft.</p>
-          You can take a tour at{' '}
-          <Link className="text-cyan-600" href="/blog">
-            my blog page
-          </Link>
-        </main>
-      </main>
+      <PageContainer>
+        <div className="flex flex-col gap-5">
+          <h2 className="text-2xl font-semibold text-center">
+            Welcome to my Blog
+          </h2>
+          <p>
+            Here you can find articles on various topics and keep updated with
+            my reading list.
+          </p>
+        </div>
+      </PageContainer>
     </>
   );
 }

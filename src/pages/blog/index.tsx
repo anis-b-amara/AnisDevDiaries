@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import path from 'path';
 import fs from 'fs';
-import { BLOGS_PATH } from '../../utils';
 import matter from 'gray-matter';
+
+import { BLOGS_PATH } from '../../utils';
+import PageContainer from '@/components/PageContainer';
 
 interface Blog {
   title: string;
@@ -15,28 +17,23 @@ interface BlogProps {
 
 const Blogs = ({ blogs }: BlogProps) => {
   return (
-    <main className="flex flex-col items-center gap-4 p-4">
-      <div className="relative flex flex-col items-center justify-center w-full p-4 bg-slate-400">
-        <div className="px-4 py-2 text-white bg-black sm:mr-auto flex-0">
-          <Link href="/" className="flex">
-            Go back to Home Page
-          </Link>
-        </div>
-        <h1 className="flex-grow text-3xl sm:absolute left">The Blog</h1>
+    <PageContainer>
+      <div className="flex flex-col gap-5">
+        <h2 className="text-2xl font-semibold text-center">The Blog</h2>
+        <ul className="flex flex-col w-full gap-2">
+          {blogs.map((blog) => (
+            <li key={blog.slug}>
+              <Link
+                className="text-base font-semibold text-secondary"
+                href={`/blog/${blog.slug}`}
+              >
+                {blog.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
-      <ul className="flex flex-col w-full gap-2 p-4 bg-slate-100">
-        {blogs.map((blog) => (
-          <li key={blog.slug}>
-            <Link
-              className="text-xl font-semibold text-blue-600"
-              href={`/blog/${blog.slug}`}
-            >
-              {blog.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </main>
+    </PageContainer>
   );
 };
 
