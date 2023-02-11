@@ -17,7 +17,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ content, data }) => {
   const date = new Date(data.date).toLocaleDateString();
   return (
     <PageContainer>
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 p-4">
         <section className="flex flex-col items-center p-4 bg-secondary">
           <h2 className="text-3xl font-bold">{data.title}</h2>
           <div>{data.x}</div>
@@ -27,7 +27,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ content, data }) => {
             </i>
           </div>
         </section>
-        <section className="p-4 bg-slate-100">
+        <section className="p-4 bg-slate-100 dark:bg-gray-600">
           <MDXRemote {...content} />
         </section>
       </div>

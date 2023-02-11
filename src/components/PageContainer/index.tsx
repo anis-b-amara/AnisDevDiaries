@@ -11,9 +11,9 @@ const PageContainer = (props: PageContainerProps): JSX.Element => {
   const { children } = props;
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen text-gray-800 dark:text-slate-50 bg-gray-50 dark:bg-gray-800">
       <Header />
-      <main className="flex-auto m-2 text-gray-800 bg-gray-50">{children}</main>
+      <main className="flex-auto m-2 ">{children}</main>
       <Footer />
     </div>
   );
