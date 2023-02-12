@@ -4,11 +4,7 @@ import { useTheme } from 'next-themes';
 import Navigation from '../Navigation';
 
 const Header = () => {
-  const { theme, setTheme, systemTheme } = useTheme();
-
-  React.useEffect(() => {
-    setTheme(systemTheme === 'dark' ? 'dark' : 'light');
-  }, [systemTheme, setTheme]);
+  const { theme, setTheme } = useTheme();
 
   function toggleTheme(): void {
     const isDarkTheme = theme === 'dark';
