@@ -4,12 +4,17 @@ import { useTheme } from 'next-themes';
 import Navigation from '../Navigation';
 
 const Header = () => {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, systemTheme } = useTheme();
 
   function toggleTheme(): void {
     const isDarkTheme = theme === 'dark';
     setTheme(isDarkTheme ? 'light' : 'dark');
   }
+
+  React.useEffect(
+    () => setTheme(systemTheme || 'light'),
+    [systemTheme, setTheme]
+  );
 
   return (
     <header className="flex items-center justify-start gap-2 px-4 bg-primary text-slate-50">
