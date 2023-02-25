@@ -7,6 +7,8 @@ import path from 'path';
 
 import { BLOGS_PATH } from '../../utils';
 import PageContainer from '@/components/PageContainer';
+import CodeBlock from '@/components/CodeBlock';
+import Head from 'next/head';
 
 interface BlogPostProps {
   content: MDXRemoteProps;
@@ -16,22 +18,27 @@ interface BlogPostProps {
 const BlogPost: React.FC<BlogPostProps> = ({ content, data }) => {
   const date = new Date(data.date).toLocaleDateString();
   return (
-    <PageContainer>
-      <div className="flex flex-col gap-5 p-4">
-        <section className="flex flex-col items-center p-4 bg-secondary">
-          <h2 className="text-3xl font-bold">{data.title}</h2>
-          <div>{data.x}</div>
-          <div>
-            <i className="text-sm">
-              Published <span className="font-medium">{date}</span>
-            </i>
-          </div>
-        </section>
-        <section className="p-4 bg-slate-100 dark:bg-gray-600">
-          <MDXRemote {...content} />
-        </section>
-      </div>
-    </PageContainer>
+    <>
+      <Head>
+        <title>{`Blog | ${data.title}`}</title>
+      </Head>
+      <PageContainer>
+        <div className="flex flex-col gap-5 p-4">
+          <section className="flex flex-col items-center p-4 bg-secondary">
+            <h2 className="text-3xl font-bold">{data.title}</h2>
+            <div>{data.x}</div>
+            <div>
+              <i className="text-sm">
+                Published <span className="font-medium">{date}</span>
+              </i>
+            </div>
+          </section>
+          <section className="p-4 bg-slate-100 dark:bg-gray-600">
+            <MDXRemote {...content} components={{ CodeBlock }} />
+          </section>
+        </div>
+      </PageContainer>
+    </>
   );
 };
 
