@@ -3,11 +3,11 @@ import * as React from 'react';
 import Footer from '../Footer';
 import Header from '../Header';
 
-type PageContainerProps = {
+type LayoutContainerProps = {
   children: JSX.Element;
 };
 
-const PageContainer = (props: PageContainerProps): JSX.Element => {
+const Layout = (props: LayoutContainerProps): JSX.Element => {
   const { children } = props;
 
   return (
@@ -19,4 +19,4 @@ const PageContainer = (props: PageContainerProps): JSX.Element => {
   );
 };
 
-export default PageContainer;
+export default Layout;

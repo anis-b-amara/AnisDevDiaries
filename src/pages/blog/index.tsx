@@ -1,11 +1,10 @@
 import Link from 'next/link';
+import Head from 'next/head';
 import path from 'path';
 import fs from 'fs';
 import matter from 'gray-matter';
 
 import { BLOGS_PATH } from '../../utils';
-import PageContainer from '@/components/PageContainer';
-import Head from 'next/head';
 
 interface Blog {
   title: string;
@@ -22,23 +21,21 @@ const Blogs = ({ blogs }: BlogProps) => {
       <Head>
         <title>Blog contents</title>
       </Head>
-      <PageContainer>
-        <div className="flex flex-col gap-5">
-          <h2 className="text-2xl font-semibold text-center">The Blog</h2>
-          <ul className="flex flex-col w-full gap-2">
-            {blogs.map((blog) => (
-              <li key={blog.slug}>
-                <Link
-                  className="text-base font-semibold text-secondary"
-                  href={`/blog/${blog.slug}`}
-                >
-                  {blog.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </PageContainer>
+      <div className="flex flex-col gap-5">
+        <h2 className="text-2xl font-semibold text-center">The Blog</h2>
+        <ul className="flex flex-col w-full gap-2">
+          {blogs.map((blog) => (
+            <li key={blog.slug}>
+              <Link
+                className="text-base font-semibold text-secondary"
+                href={`/blog/${blog.slug}`}
+              >
+                {blog.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </>
   );
 };

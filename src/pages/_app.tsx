@@ -5,6 +5,7 @@ import { ThemeProviderProps } from 'next-themes/dist/types';
 
 import type { AppProps } from 'next/app';
 
+import Layout from '@/components/Layout';
 import '@/styles/globals.css';
 
 const ThemeProvider: ComponentType<ThemeProviderProps> = dynamic(
@@ -15,7 +16,9 @@ const ThemeProvider: ComponentType<ThemeProviderProps> = dynamic(
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider attribute="class">
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </ThemeProvider>
   );
 }
