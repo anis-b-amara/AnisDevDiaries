@@ -17,15 +17,17 @@ const Header = () => {
   );
 
   return (
-    <header className="flex items-center justify-start gap-2 px-4 bg-primary text-slate-50">
-      <h1 className="text-3xl font-bold">Anis</h1>
-      <Navigation />
-      <button
-        className="h-8 p-2 rounded-full w-fit bg-secondary text-slate-50 border-neutral-50"
-        onClick={toggleTheme}
-      >
-        Toggle Me [{theme}]
-      </button>
+    <header className="bg-primary text-slate-50">
+      <div className="flex items-center justify-start gap-2 px-4 md:mx-auto md:w-2/3 lg:w-[1020px]">
+        <h1 className="text-3xl font-bold">Anis</h1>
+        <Navigation />
+        <button
+          className="h-8 w-fit rounded-full border-neutral-50 bg-secondary p-2 text-slate-50"
+          onClick={toggleTheme}
+        >
+          Toggle Me [{theme}]
+        </button>
+      </div>
     </header>
   );
 };

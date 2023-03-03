@@ -12,10 +12,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="flex flex-col gap-5">
-        <h2 className="text-2xl font-semibold text-center">
+        <h2 className="text-center text-2xl font-semibold">
           Welcome to my Blog
         </h2>
-        <p>
+        <p className="mt-5 text-center">
           Here you can find articles on various topics and keep updated with my
           reading list.
         </p>

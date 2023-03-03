@@ -22,12 +22,12 @@ const Blogs = ({ blogs }: BlogProps) => {
         <title>Blog contents</title>
       </Head>
       <div className="flex flex-col gap-5">
-        <h2 className="text-2xl font-semibold text-center">The Blog</h2>
-        <ul className="flex flex-col w-full gap-2">
+        <h2 className="text-center text-2xl font-semibold">The Blog</h2>
+        <ul className="flex w-full flex-col gap-2">
           {blogs.map((blog) => (
             <li key={blog.slug}>
               <Link
-                className="text-base font-semibold text-secondary"
+                className="text-base font-semibold text-slate-900 dark:text-slate-200"
                 href={`/blog/${blog.slug}`}
               >
                 {blog.title}
