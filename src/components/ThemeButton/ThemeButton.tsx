@@ -1,12 +1,31 @@
 import * as React from 'react';
 
-type ThemeButtonProps = {
-  isDark: boolean;
-  toggleTheme: () => void;
-};
+import { useTheme } from 'next-themes';
 
-const ThemeButton = (props: ThemeButtonProps): JSX.Element => {
-  const { isDark, toggleTheme } = props;
+import { useLocalStorage } from '@/hooks/useLocalStorage';
+
+enum Theme {
+  DARK = 'dark',
+  LIGHT = 'light',
+}
+
+const ThemeButton = (): JSX.Element => {
+  const { theme, setTheme, systemTheme } = useTheme();
+  const isDarkTheme = theme === Theme.DARK;
+  const [savedTheme, setSavedTheme] = useLocalStorage(
+    'theme',
+    isDarkTheme ? Theme.DARK : Theme.LIGHT
+  );
+
+  function toggleTheme(): void {
+    const selectedTheme = isDarkTheme ? Theme.LIGHT : Theme.DARK;
+    setSavedTheme(selectedTheme);
+  }
+
+  React.useEffect(
+    () => setTheme(savedTheme || systemTheme || Theme.LIGHT),
+    [systemTheme, setTheme, savedTheme]
+  );
 
   return (
     <button
@@ -16,7 +35,7 @@ const ThemeButton = (props: ThemeButtonProps): JSX.Element => {
     >
       <div
         className={`h-4 w-4 rounded-full ${
-          isDark ? 'bg-gray-300' : 'bg-gray-800'
+          isDarkTheme ? 'bg-gray-300' : 'bg-gray-800'
         }`}
       ></div>
     </button>
